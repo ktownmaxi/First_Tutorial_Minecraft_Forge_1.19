@@ -2,6 +2,8 @@
   "item.tutorialmod.zircon":"Zircon",
   "item.tutorialmod.raw_zircon":"Raw Zircon",
   "item.tutorialmod.eight_ball": "Eight Ball",
+  "item.tutorialmod.blueberry": "Blueberry",
+  "item.tutorialmod.blueberry_seeds": "Blueberry Seeds",
 
   "block.tutorialmod.zircon_block": "Block of Zircon",
   "block.tutorialmod.zircon_ore": "Zircon Ore",
@@ -10,6 +12,7 @@
   "block.tutorialmod.netherrack_zircon_ore": "Netherrack Zircon Ore",
   "block.tutorialmod.jumpy_block": "Jumpy Block",
   "block.tutorialmod.zircon_lamp": "Zircon Lamp",
+  "block.tutorialmod.blueberry_crop": "Blueberry Crop",
 
   "itemGroup.tutorialtab": "Zircon Tutorial Tab"
 }
