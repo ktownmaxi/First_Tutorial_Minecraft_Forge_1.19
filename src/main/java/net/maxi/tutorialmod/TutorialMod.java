@@ -3,6 +3,7 @@ package net.maxi.tutorialmod;
 import com.mojang.logging.LogUtils;
 import net.maxi.tutorialmod.block.ModBlocks;
 import net.maxi.tutorialmod.item.ModItems;
+import net.maxi.tutorialmod.villager.ModVillagers;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +28,7 @@ public class TutorialMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModVillagers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -34,6 +36,9 @@ public class TutorialMod
     }
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        event.enqueueWork(() -> {
+            ModVillagers.registerPOIs();
+        });
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -43,7 +48,7 @@ public class TutorialMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLUEBERRY_CROP.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLUEBERRY_CROP.get(), RenderType.cutout());  // Error fine for now
         }
     }
 }
