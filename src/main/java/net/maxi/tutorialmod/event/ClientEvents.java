@@ -1,6 +1,8 @@
 package net.maxi.tutorialmod.event;
 
 import net.maxi.tutorialmod.TutorialMod;
+import net.maxi.tutorialmod.networking.ModMessages;
+import net.maxi.tutorialmod.networking.packet.ExampleC2SPacket;
 import net.maxi.tutorialmod.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -16,7 +18,7 @@ public class ClientEvents {
         @SubscribeEvent
     public static void onKeyInput(InputEvent.Key event) {
         if(KeyBinding.DRINK_KEY.consumeClick()) {
-            Minecraft.getInstance().player.sendSystemMessage(Component.literal("Pressed a key!!!"));
+            ModMessages.sendtoServer(new ExampleC2SPacket());
         }
     } }
 

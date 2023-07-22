@@ -3,6 +3,7 @@ package net.maxi.tutorialmod;
 import com.mojang.logging.LogUtils;
 import net.maxi.tutorialmod.block.ModBlocks;
 import net.maxi.tutorialmod.item.ModItems;
+import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.painting.ModPaintings;
 import net.maxi.tutorialmod.villager.ModVillagers;
 import net.maxi.tutorialmod.world.feature.ModConfiguredFeatures;
@@ -47,6 +48,8 @@ public class TutorialMod
         event.enqueueWork(() -> {
             ModVillagers.registerPOIs();
         });
+
+        ModMessages.register();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
