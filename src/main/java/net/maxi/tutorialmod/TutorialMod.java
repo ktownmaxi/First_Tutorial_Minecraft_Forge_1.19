@@ -3,6 +3,7 @@ package net.maxi.tutorialmod;
 import com.mojang.logging.LogUtils;
 import net.maxi.tutorialmod.block.ModBlocks;
 import net.maxi.tutorialmod.item.ModItems;
+import net.maxi.tutorialmod.painting.ModPaintings;
 import net.maxi.tutorialmod.villager.ModVillagers;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -28,7 +29,9 @@ public class TutorialMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
         ModVillagers.register(modEventBus);
+        ModPaintings.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
