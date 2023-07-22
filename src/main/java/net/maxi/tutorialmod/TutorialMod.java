@@ -5,6 +5,8 @@ import net.maxi.tutorialmod.block.ModBlocks;
 import net.maxi.tutorialmod.item.ModItems;
 import net.maxi.tutorialmod.painting.ModPaintings;
 import net.maxi.tutorialmod.villager.ModVillagers;
+import net.maxi.tutorialmod.world.feature.ModConfiguredFeatures;
+import net.maxi.tutorialmod.world.feature.ModPlacedFeatures;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +34,9 @@ public class TutorialMod
 
         ModVillagers.register(modEventBus);
         ModPaintings.register(modEventBus);
+
+        ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
