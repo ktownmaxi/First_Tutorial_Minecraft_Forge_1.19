@@ -4,6 +4,7 @@ import net.maxi.tutorialmod.TutorialMod;
 import net.maxi.tutorialmod.block.custom.BlueberryCropBlock;
 import net.maxi.tutorialmod.block.custom.JumpyBlock;
 import net.maxi.tutorialmod.block.custom.ZirconLampBlock;
+import net.maxi.tutorialmod.fluid.ModFluids;
 import net.maxi.tutorialmod.item.ModCreativModeTab;
 import net.maxi.tutorialmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -13,7 +14,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -59,6 +63,9 @@ public class ModBlocks {
                     .strength(6f).requiresCorrectToolForDrops()
                     .lightLevel(state -> state.getValue(ZirconLampBlock.LIT) ? 15 : 0)),
             ModCreativModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<LiquidBlock> SOAP_WATER_BLOCK = BLOCKS.register("soap_water_block", (
+            () -> new LiquidBlock(ModFluids.SOURCE_SOAP_WATER, BlockBehaviour.Properties.copy(Blocks.WATER))));
 
     public  static  final  RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop",
             ()-> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));

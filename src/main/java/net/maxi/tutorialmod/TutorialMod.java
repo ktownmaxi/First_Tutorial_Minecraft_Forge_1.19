@@ -2,6 +2,8 @@ package net.maxi.tutorialmod;
 
 import com.mojang.logging.LogUtils;
 import net.maxi.tutorialmod.block.ModBlocks;
+import net.maxi.tutorialmod.fluid.ModFluidTypes;
+import net.maxi.tutorialmod.fluid.ModFluids;
 import net.maxi.tutorialmod.item.ModItems;
 import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.painting.ModPaintings;
@@ -39,6 +41,9 @@ public class TutorialMod
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
 
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -58,6 +63,8 @@ public class TutorialMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_SOAP_WATER.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
         }
     }
 }
