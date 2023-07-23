@@ -1,5 +1,6 @@
 package net.maxi.tutorialmod.networking.packet;
 
+import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.thirst.PlayerThirst;
 import net.maxi.tutorialmod.thirst.PlayerThirstProvider;
 import net.minecraft.ChatFormatting;
@@ -51,6 +52,8 @@ public class DrinkWaterC2SPacket {
                     thirst.addThirst(1);
                     player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
                             .withStyle(ChatFormatting.AQUA));
+
+                    ModMessages.sendtoPlayer(new ThirstDatSyncS2CPacket(thirst.getThirst()), player);
                 });
 
 
@@ -62,6 +65,7 @@ public class DrinkWaterC2SPacket {
 
                     player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
                             .withStyle(ChatFormatting.AQUA));
+                    ModMessages.sendtoPlayer(new ThirstDatSyncS2CPacket(thirst.getThirst()), player);
                 });
 
 

@@ -1,6 +1,7 @@
 package net.maxi.tutorialmod.event;
 
 import net.maxi.tutorialmod.TutorialMod;
+import net.maxi.tutorialmod.client.ThirstHudOverlay;
 import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.networking.packet.DrinkWaterC2SPacket;
 import net.maxi.tutorialmod.networking.packet.ExampleC2SPacket;
@@ -9,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +30,10 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.DRINK_KEY);
+    }
+    @SubscribeEvent
+    public static void registerGuiOverlay(RegisterGuiOverlaysEvent event) {
+            event.registerAboveAll("thirst", ThirstHudOverlay.HUD_THIRST);
     }
 }
 }

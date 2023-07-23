@@ -3,6 +3,7 @@ package net.maxi.tutorialmod.networking;
 import net.maxi.tutorialmod.TutorialMod;
 import net.maxi.tutorialmod.networking.packet.DrinkWaterC2SPacket;
 import net.maxi.tutorialmod.networking.packet.ExampleC2SPacket;
+import net.maxi.tutorialmod.networking.packet.ThirstDatSyncS2CPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -38,6 +39,11 @@ public class ModMessages {
                 .decoder(DrinkWaterC2SPacket::new)
                 .encoder(DrinkWaterC2SPacket::toBytes)
                 .consumerMainThread(DrinkWaterC2SPacket::handle).add();
+
+        net.messageBuilder(ThirstDatSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ThirstDatSyncS2CPacket::new)
+                .encoder(ThirstDatSyncS2CPacket::toBytes)
+                .consumerMainThread(ThirstDatSyncS2CPacket::handle).add();
     }
 
 
