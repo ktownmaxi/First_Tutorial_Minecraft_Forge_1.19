@@ -46,10 +46,9 @@ public class TutorialMod
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(() -> {
+            ModMessages.register();
             ModVillagers.registerPOIs();
         });
-
-        ModMessages.register();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

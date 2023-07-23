@@ -43,16 +43,12 @@ public class DrinkWaterC2SPacket {
 
             if (hasWaterAroundThem(player, level, 2)) {
                 //Notify player the player
-                player.sendSystemMessage(Component.translatable(MESSAGE_DRINK_WATER).withStyle(ChatFormatting.AQUA));
                 //play drinking sound
                 level.playSound(null, player.getOnPos(), SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS,
                         0.5F, level.random.nextFloat() * 0.1F +0.9F);
                 //increase water level
                 player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
                     thirst.addThirst(1);
-                    player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
-                            .withStyle(ChatFormatting.AQUA));
-
                     ModMessages.sendtoPlayer(new ThirstDatSyncS2CPacket(thirst.getThirst()), player);
                 });
 
@@ -62,9 +58,6 @@ public class DrinkWaterC2SPacket {
                 player.sendSystemMessage(Component.translatable(MESSAGE_NO_WATER).withStyle(ChatFormatting.RED));
                 // Output the current thirst level
                 player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
-
-                    player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
-                            .withStyle(ChatFormatting.AQUA));
                     ModMessages.sendtoPlayer(new ThirstDatSyncS2CPacket(thirst.getThirst()), player);
                 });
 

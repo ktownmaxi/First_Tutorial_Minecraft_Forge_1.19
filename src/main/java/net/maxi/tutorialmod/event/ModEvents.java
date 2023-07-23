@@ -132,7 +132,7 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if(event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
-                if(thirst.getThirst() > 0 && event.player.getRandom().nextFloat() < 0.005f) { // Once Every 10 Seconds on Avg
+                if(thirst.getThirst() > 0 && event.player.getRandom().nextFloat() < 0.003f) { // Once Every 10 Seconds on Avg
                     thirst.subThirst(1);
                     ModMessages.sendtoPlayer(new ThirstDatSyncS2CPacket(thirst.getThirst()), (ServerPlayer)event.player);
                 }
