@@ -1,5 +1,7 @@
 package net.maxi.tutorialmod.networking.packet;
 
+import net.maxi.tutorialmod.thirst.PlayerThirst;
+import net.maxi.tutorialmod.thirst.PlayerThirstProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkEvent;
+import net.maxi.tutorialmod.thirst.PlayerThirst.*;
 
 import java.util.function.Supplier;
 
@@ -44,14 +47,23 @@ public class DrinkWaterC2SPacket {
                 level.playSound(null, player.getOnPos(), SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS,
                         0.5F, level.random.nextFloat() * 0.1F +0.9F);
                 //increase water level
-
-                //output thirst level
+                player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
+                    thirst.addThirst(1);
+                    player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
+                            .withStyle(ChatFormatting.AQUA));
+                });
 
 
             } else {
                 //Notify the player
                 player.sendSystemMessage(Component.translatable(MESSAGE_NO_WATER).withStyle(ChatFormatting.RED));
                 // Output the current thirst level
+                player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
+
+                    player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
+                            .withStyle(ChatFormatting.AQUA));
+                });
+
 
             }
 
