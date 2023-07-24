@@ -34,6 +34,9 @@ public class ModItems {
             () -> new BucketItem(ModFluids.SOURCE_SOAP_WATER,
                     new Item.Properties().tab(ModCreativModeTab.TUTORIAL_TAB)
                             .craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final RegistryObject<Item> NICE_SWORD = ITEMS.register("nice_sword",
+            () -> new SwordItem(Tiers.NETHERITE, 10 , 5f,
+                   new Item.Properties().tab(ModCreativModeTab.TUTORIAL_TAB).stacksTo(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
