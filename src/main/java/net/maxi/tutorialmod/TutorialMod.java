@@ -2,14 +2,18 @@ package net.maxi.tutorialmod;
 
 import com.mojang.logging.LogUtils;
 import net.maxi.tutorialmod.block.ModBlocks;
+import net.maxi.tutorialmod.block.entity.ModBlockEntities;
 import net.maxi.tutorialmod.fluid.ModFluidTypes;
 import net.maxi.tutorialmod.fluid.ModFluids;
 import net.maxi.tutorialmod.item.ModItems;
 import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.painting.ModPaintings;
+import net.maxi.tutorialmod.screen.GemInfusingStationScreen;
+import net.maxi.tutorialmod.screen.ModMenuTypes;
 import net.maxi.tutorialmod.villager.ModVillagers;
 import net.maxi.tutorialmod.world.feature.ModConfiguredFeatures;
 import net.maxi.tutorialmod.world.feature.ModPlacedFeatures;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,6 +48,9 @@ public class TutorialMod
         ModFluidTypes.register(modEventBus);
         ModFluids.register(modEventBus);
 
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -65,6 +72,8 @@ public class TutorialMod
         {
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_SOAP_WATER.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
+
+            MenuScreens.register(ModMenuTypes.GEM_INFUSING_STATION_MENU.get(), GemInfusingStationScreen::new);
         }
     }
 }
