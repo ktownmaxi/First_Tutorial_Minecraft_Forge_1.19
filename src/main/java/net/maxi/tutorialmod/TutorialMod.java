@@ -8,6 +8,7 @@ import net.maxi.tutorialmod.fluid.ModFluids;
 import net.maxi.tutorialmod.item.ModItems;
 import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.painting.ModPaintings;
+import net.maxi.tutorialmod.recipe.ModRecipes;
 import net.maxi.tutorialmod.screen.GemInfusingStationScreen;
 import net.maxi.tutorialmod.screen.ModMenuTypes;
 import net.maxi.tutorialmod.villager.ModVillagers;
@@ -50,6 +51,8 @@ public class TutorialMod
 
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
