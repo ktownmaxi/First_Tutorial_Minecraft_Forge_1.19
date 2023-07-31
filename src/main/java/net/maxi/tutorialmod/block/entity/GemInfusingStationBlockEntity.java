@@ -6,6 +6,7 @@ import net.maxi.tutorialmod.item.ModItems;
 import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.networking.packet.EnergySyncS2CPacket;
 import net.maxi.tutorialmod.networking.packet.FluidSyncS2CPacket;
+import net.maxi.tutorialmod.networking.packet.ItemStackSyncS2CPacket;
 import net.maxi.tutorialmod.recipe.GemInfusingStationRecipe;
 import net.maxi.tutorialmod.screen.GemInfusingStationMenu;
 import net.maxi.tutorialmod.util.ModEnergyStorage;
@@ -50,6 +51,9 @@ public class GemInfusingStationBlockEntity extends BlockEntity implements MenuPr
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            if (!level.isClientSide()) {
+                ModMessages.sendtoClients(new ItemStackSyncS2CPacket(this, worldPosition));
+            }
         }
 
         @Override
@@ -95,6 +99,23 @@ public class GemInfusingStationBlockEntity extends BlockEntity implements MenuPr
     }
 
     private static final int ENERGY_REQ = 32;
+    public ItemStack getRenderStack() {
+        ItemStack stack;
+
+        if(!itemHandler.getStackInSlot(2).isEmpty()) {
+            stack = itemHandler.getStackInSlot(2);
+        } else {
+            stack = itemHandler.getStackInSlot(1);
+        }
+
+        return stack;
+    }
+
+    public void setHandler(ItemStackHandler itemStackHandler) {
+        for (int i = 0; i < itemStackHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
+        }
+    }
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private final Map<Direction, LazyOptional<WrappedHandler>> directionWrappedHandlerMap =
@@ -357,7 +378,5 @@ public class GemInfusingStationBlockEntity extends BlockEntity implements MenuPr
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
         return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
     }
-
-
 
 }
