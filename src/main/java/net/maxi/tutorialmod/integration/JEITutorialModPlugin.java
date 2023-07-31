@@ -10,6 +10,7 @@ import net.maxi.tutorialmod.recipe.GemInfusingStationRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.maxi.tutorialmod.integration.GemInfusingStationRecipeCategory;
 
 import java.util.List;
 import java.util.Objects;

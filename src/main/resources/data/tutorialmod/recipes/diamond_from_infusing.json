@@ -2,10 +2,14 @@
   "type": "tutorialmod:gem_infusing",
   "ingredients": [
     {
-      "item": "tutorialmod:raw_zircon"
+      "item": "minecraft:stick"
     }
   ],
+  "fluid": {
+    "FluidName": "tutorialmod:soap_water_fluid",
+    "Amount": 2500
+  },
   "output": {
-    "item": "tutorialmod:zircon"
+    "item": "minecraft:diamond"
   }
 }
