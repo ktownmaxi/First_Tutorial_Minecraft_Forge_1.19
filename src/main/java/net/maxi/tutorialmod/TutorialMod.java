@@ -8,6 +8,7 @@ import net.maxi.tutorialmod.entity.client.ChomperRenderer;
 import net.maxi.tutorialmod.fluid.ModFluidTypes;
 import net.maxi.tutorialmod.fluid.ModFluids;
 import net.maxi.tutorialmod.item.ModItems;
+import net.maxi.tutorialmod.loot.ModLootModifiers;
 import net.maxi.tutorialmod.networking.ModMessages;
 import net.maxi.tutorialmod.painting.ModPaintings;
 import net.maxi.tutorialmod.recipe.ModRecipes;
@@ -65,6 +66,8 @@ public class TutorialMod
 
         ModRecipes.register(modEventBus);
         ModEntityTypes.register(modEventBus);
+
+        ModLootModifiers.register(modEventBus);
 
         GeckoLib.initialize();
 
