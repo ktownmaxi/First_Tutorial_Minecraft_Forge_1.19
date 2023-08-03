@@ -7,6 +7,7 @@ import net.maxi.tutorialmod.entity.ModEntityTypes;
 import net.maxi.tutorialmod.entity.client.ChomperRenderer;
 import net.maxi.tutorialmod.fluid.ModFluidTypes;
 import net.maxi.tutorialmod.fluid.ModFluids;
+import net.maxi.tutorialmod.item.ModCreativeModeTab;
 import net.maxi.tutorialmod.item.ModItems;
 import net.maxi.tutorialmod.loot.ModLootModifiers;
 import net.maxi.tutorialmod.networking.ModMessages;
@@ -14,21 +15,16 @@ import net.maxi.tutorialmod.painting.ModPaintings;
 import net.maxi.tutorialmod.recipe.ModRecipes;
 import net.maxi.tutorialmod.screen.GemInfusingStationScreen;
 import net.maxi.tutorialmod.screen.ModMenuTypes;
-import net.maxi.tutorialmod.util.ModTags;
 import net.maxi.tutorialmod.villager.ModVillagers;
-import net.maxi.tutorialmod.world.feature.ModConfiguredFeatures;
-import net.maxi.tutorialmod.world.feature.ModPlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,7 +32,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -55,9 +51,6 @@ public class TutorialMod
         ModVillagers.register(modEventBus);
         ModPaintings.register(modEventBus);
 
-        ModConfiguredFeatures.register(modEventBus);
-        ModPlacedFeatures.register(modEventBus);
-
         ModFluidTypes.register(modEventBus);
         ModFluids.register(modEventBus);
 
@@ -74,6 +67,8 @@ public class TutorialMod
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+
+        modEventBus.addListener(this::addCreativ);
     }
     private void commonSetup(final FMLCommonSetupEvent event)
     {
@@ -84,6 +79,59 @@ public class TutorialMod
             ModMessages.register();
             ModVillagers.registerPOIs();
         });
+    }
+
+    private void addCreativ(CreativeModeTabEvent.BuildContents event) {
+        if (event.getTab() == ModCreativeModeTab.TUTORIAL_TAB) {
+            event.accept(ModItems.ZIRCON);
+            event.accept(ModItems.RAW_ZIRCON);
+            event.accept(ModItems.EIGHT_BALL);
+            event.accept(ModItems.BLUEBERRY);
+            event.accept(ModItems.BLUEBERRY_SEEDS);
+            event.accept(ModItems.NICE_SWORD);
+            event.accept(ModItems.SOAP_WATER_BUCKET);
+            event.accept(ModItems.ZIRCON_PICKAXE);
+            event.accept(ModItems.CHOMPER_SPAWM_EGG);
+
+            event.accept(ModBlocks.ZIRCON_BLOCK);
+            event.accept(ModBlocks.RED_MAPLE_LEAVES);
+            event.accept(ModBlocks.RED_MAPLE_PLANKS);
+            event.accept(ModBlocks.RED_MAPLE_LOG);
+            event.accept(ModBlocks.RED_MAPLE_WOOD);
+            event.accept(ModBlocks.RED_MAPLE_SAPLING);
+            event.accept(ModBlocks.STRIPPED_RED_MAPLE_LOG);
+            event.accept(ModBlocks.STRIPPED_RED_MAPLE_WOOD);
+            event.accept(ModBlocks.DEEPSLATE_ZIRCON_ORE);
+            event.accept(ModBlocks.ZIRCON_ORE);
+            event.accept(ModBlocks.ENDSTONE_ZIRCON_ORE);
+            event.accept(ModBlocks.NETHERRACK_ZIRCON_ORE);
+            event.accept(ModBlocks.ZIRCON_LAMP);
+            event.accept(ModBlocks.JASMINE);
+            event.accept(ModBlocks.JUMPY_BLOCK);
+            event.accept(ModBlocks.GEM_INFUSING_STATION);
+        }
+        if (event.getTab() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.ZIRCON);
+        }
+        if(event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.ZIRCON_BLOCK);
+            event.accept(ModBlocks.RED_MAPLE_LEAVES);
+            event.accept(ModBlocks.RED_MAPLE_PLANKS);
+            event.accept(ModBlocks.RED_MAPLE_LOG);
+            event.accept(ModBlocks.RED_MAPLE_WOOD);
+            event.accept(ModBlocks.RED_MAPLE_SAPLING);
+            event.accept(ModBlocks.STRIPPED_RED_MAPLE_LOG);
+            event.accept(ModBlocks.STRIPPED_RED_MAPLE_WOOD);
+            event.accept(ModBlocks.DEEPSLATE_ZIRCON_ORE);
+            event.accept(ModBlocks.ZIRCON_ORE);
+            event.accept(ModBlocks.ENDSTONE_ZIRCON_ORE);
+            event.accept(ModBlocks.NETHERRACK_ZIRCON_ORE);
+            event.accept(ModBlocks.ZIRCON_LAMP);
+            event.accept(ModBlocks.JASMINE);
+            event.accept(ModBlocks.JUMPY_BLOCK);
+            event.accept(ModBlocks.GEM_INFUSING_STATION);
+        }
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
