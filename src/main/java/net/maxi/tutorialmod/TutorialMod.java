@@ -13,6 +13,7 @@ import net.maxi.tutorialmod.painting.ModPaintings;
 import net.maxi.tutorialmod.recipe.ModRecipes;
 import net.maxi.tutorialmod.screen.GemInfusingStationScreen;
 import net.maxi.tutorialmod.screen.ModMenuTypes;
+import net.maxi.tutorialmod.util.ModTags;
 import net.maxi.tutorialmod.villager.ModVillagers;
 import net.maxi.tutorialmod.world.feature.ModConfiguredFeatures;
 import net.maxi.tutorialmod.world.feature.ModPlacedFeatures;
@@ -20,6 +21,8 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -68,6 +71,9 @@ public class TutorialMod
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(() -> {
+
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.JASMINE.getId(), ModBlocks.POTTED_JASMINE);
+
             ModMessages.register();
             ModVillagers.registerPOIs();
         });
