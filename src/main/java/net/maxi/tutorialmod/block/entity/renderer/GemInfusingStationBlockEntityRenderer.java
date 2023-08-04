@@ -40,9 +40,9 @@ public class GemInfusingStationBlockEntityRenderer implements BlockEntityRendere
             case WEST -> pPoseStack.mulPose(Axis.ZP.rotationDegrees(270));
         }
 
-        itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.GUI, getLightLevel(pBlockEntity.getLevel(),
-                        pBlockEntity.getBlockPos()),
-                OverlayTexture.NO_OVERLAY, pPoseStack, pBufferSource, 1);
+        //itemRenderer.renderStatic(itemStack, , getLightLevel(pBlockEntity.getLevel(),
+          //              pBlockEntity.getBlockPos()),
+            //    OverlayTexture.NO_OVERLAY, pPoseStack, pBufferSource, 1);
         pPoseStack.popPose();
     }
 

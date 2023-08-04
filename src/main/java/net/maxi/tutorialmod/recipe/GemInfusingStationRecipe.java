@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import net.maxi.tutorialmod.TutorialMod;
 import net.maxi.tutorialmod.util.FluidJSONUtil;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -38,6 +39,11 @@ public class GemInfusingStationRecipe implements Recipe<SimpleContainer> {
         return recipeItems.get(0).test(pContainer.getItem(1));
     }
 
+    @Override
+    public ItemStack assemble(SimpleContainer p_44001_, RegistryAccess p_267165_) {
+        return null;
+    }
+
     public FluidStack getFluid() {
         return fluidStack;
     }
@@ -47,10 +53,6 @@ public class GemInfusingStationRecipe implements Recipe<SimpleContainer> {
         return recipeItems;
     }
 
-    @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
-        return output;
-    }
 
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
@@ -58,6 +60,9 @@ public class GemInfusingStationRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
+    public ItemStack getResultItem(RegistryAccess p_267052_) {
+        return null;
+    }
     public ItemStack getResultItem() {
         return output.copy();
     }
